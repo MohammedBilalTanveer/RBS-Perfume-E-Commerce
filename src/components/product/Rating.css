@@ -1,0 +1,31 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rating__stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--gold);
+}
+
+.rating__stars svg {
+  width: 13px;
+  height: 13px;
+}
+
+.rating__stars .is-empty {
+  color: var(--text-3);
+  opacity: 0.6;
+}
+
+.rating--md .rating__stars svg {
+  width: 17px;
+  height: 17px;
+}
+
+.rating__extra {
+  font-size: 0.8rem;
+  color: var(--text-3);
+}

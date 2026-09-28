@@ -1,0 +1,220 @@
+.row {
+  padding-block: clamp(28px, 4vw, 48px);
+}
+
+.row__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.row__head .eyebrow {
+  margin-bottom: 8px;
+}
+
+.row__title {
+  font-size: clamp(1.7rem, 1.2rem + 1.6vw, 2.5rem);
+}
+
+.row__frame {
+  position: relative;
+}
+
+.row__track {
+  --per: 2.2;
+  --gap: 14px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));
+  gap: var(--gap);
+  padding: 8px var(--side) 12px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--side);
+  scrollbar-width: none;
+}
+
+.row__track::-webkit-scrollbar {
+  display: none;
+}
+
+.row__item {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .row__track {
+    --per: 3.2;
+    --gap: 18px;
+  }
+}
+
+@media (min-width: 960px) {
+  .row__track {
+    --per: 4;
+    --gap: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .row__track {
+    --per: 5;
+    --gap: 22px;
+  }
+}
+
+/* Edge arrows (mouse / trackpad only) */
+.row__nav {
+  position: absolute;
+  top: 8px;
+  bottom: 12px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: max(48px, calc(var(--side) - 4px));
+  color: var(--text);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.row__nav[hidden] {
+  display: none;
+}
+
+.row__nav--prev {
+  left: 0;
+  background: linear-gradient(90deg, rgba(11, 10, 9, 0.92), rgba(11, 10, 9, 0));
+}
+
+.row__nav--next {
+  right: 0;
+  background: linear-gradient(270deg, rgba(11, 10, 9, 0.92), rgba(11, 10, 9, 0));
+}
+
+.row__nav svg {
+  width: 34px;
+  height: 34px;
+  transition: transform 0.25s var(--ease);
+}
+
+.row__nav:hover svg {
+  transform: scale(1.2);
+}
+
+.row__frame:hover .row__nav,
+.row__nav:focus-visible {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .row__nav {
+    display: none;
+  }
+}
+
+/* ---------- Top 10 ---------- */
+
+.row--ranked .row__track {
+  --per: 1.5;
+}
+
+@media (min-width: 640px) {
+  .row--ranked .row__track {
+    --per: 2.4;
+  }
+}
+
+@media (min-width: 960px) {
+  .row--ranked .row__track {
+    --per: 3.3;
+  }
+}
+
+@media (min-width: 1280px) {
+  .row--ranked .row__track {
+    --per: 4.2;
+  }
+}
+
+.ranked {
+  display: grid;
+  grid-template-columns: 38% 62%;
+  align-items: end;
+  container-type: inline-size; /* numerals scale with the card (cqw units) */
+}
+
+.ranked__num {
+  justify-self: end;
+  margin-right: -0.06em;
+  margin-bottom: 64px; /* sits on the bottom edge of the poster, above the name/price */
+  font-family: var(--font-display);
+  font-size: 92cqw;
+  font-weight: 600;
+  line-height: 0.7;
+  letter-spacing: -0.06em;
+  color: var(--bg);
+  -webkit-text-stroke: 3px rgba(243, 237, 228, 0.55);
+  paint-order: stroke fill;
+  user-select: none;
+  transition: -webkit-text-stroke-color 0.3s;
+}
+
+.ranked__num--wide {
+  font-size: 66cqw;
+  letter-spacing: -0.12em;
+}
+
+.ranked:hover .ranked__num {
+  -webkit-text-stroke-color: var(--gold);
+}
+
+.ranked__poster {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 10px;
+}
+
+.ranked__media {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 3 / 4;
+  background: var(--surface);
+  box-shadow: -12px 0 24px -12px rgba(0, 0, 0, 0.8);
+}
+
+.ranked__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease);
+}
+
+.ranked:hover .ranked__media img {
+  transform: scale(1.06);
+}
+
+.ranked__info {
+  display: grid;
+  gap: 2px;
+  min-height: 54px;
+}
+
+.ranked__name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.ranked:hover .ranked__name {
+  color: var(--gold-2);
+}

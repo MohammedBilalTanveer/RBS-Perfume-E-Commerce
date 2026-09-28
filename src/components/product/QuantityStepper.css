@@ -1,0 +1,45 @@
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  height: 50px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+}
+
+.stepper--sm {
+  height: 38px;
+}
+
+.stepper__btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 100%;
+  color: var(--text-2);
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.stepper--sm .stepper__btn {
+  width: 34px;
+}
+
+.stepper__btn:hover:not(:disabled) {
+  color: var(--text);
+  background: rgba(243, 237, 228, 0.06);
+}
+
+.stepper__btn:disabled {
+  opacity: 0.35;
+}
+
+.stepper__btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.stepper__value {
+  min-width: 32px;
+  text-align: center;
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
+}

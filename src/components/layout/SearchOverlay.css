@@ -1,0 +1,147 @@
+.search {
+  inset: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  height: fit-content;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+}
+
+.search::backdrop {
+  background: rgba(5, 4, 3, 0.72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  animation: fade-in 0.25s both;
+}
+
+.search__panel {
+  max-height: 100dvh;
+  overflow-y: auto;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+  animation: search-in 0.35s var(--ease) both;
+}
+
+.search__bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 88px;
+  border-bottom: 1px solid var(--line);
+}
+
+.search__icon {
+  width: 24px;
+  height: 24px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.search__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 2.1rem);
+  color: var(--text);
+}
+
+.search__input::placeholder {
+  color: var(--text-3);
+}
+
+.search__input:focus {
+  outline: none;
+}
+
+.search__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search__body {
+  padding-top: 28px;
+}
+
+.search__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.search__results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 8px 24px;
+}
+
+.search__result {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px;
+  margin-inline: -10px;
+  border-radius: var(--radius);
+  transition: background-color 0.2s;
+}
+
+.search__result:hover,
+.search__result:focus-visible {
+  background: rgba(243, 237, 228, 0.05);
+}
+
+.search__result img {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.search__result-text {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.search__result-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+
+.search__result-cat {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.search__empty {
+  color: var(--text-2);
+}
+
+.search__empty em {
+  color: var(--gold-2);
+  font-style: normal;
+}
+
+@keyframes search-in {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+}
